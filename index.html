@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LUM. Workshops — Coming soon</title>
+<meta name="description" content="Candle-making workshops in Lisbon. Leave your email and we'll let you know when the next session opens.">
+<meta name="theme-color" content="#1c1109">
+<meta property="og:title" content="LUM. Workshops — Coming soon">
+<meta property="og:description" content="Candle-making workshops in Lisbon.">
+<meta property="og:image" content="photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="photo.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233A2415'/%3E%3Cpath d='M16 5c3 5 6 8 6 13a6 6 0 0 1-12 0c0-5 3-8 6-13z' fill='%23F0C36D'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink: #FDF6EC;          /* cream */
+    --gold: #F0C36D;
+    --shade: 28, 17, 9;      /* dark chocolate, as RGB for overlays */
+    --focus: 55% 38%;      /* where the photo stays anchored when cropped (phone) */
+    --focus-wide: 50% 36%; /* same, on wide screens */
+    --shift: 9svh;       /* centred variant: nudge the text block up (-) or down (+) on phones */
+    --glow-y: 61%;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: rgb(var(--shade));
+    color: var(--ink);
+    font-family: "DM Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: max(28px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero__bg {
+    position: absolute; inset: 0; z-index: -2;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: var(--focus);
+  }
+  /* soft darkening so white text stays readable; heavier at the bottom where the form sits */
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(to bottom,
+        rgba(var(--shade), .45) 0%,
+        rgba(var(--shade), .05) 22%,
+        rgba(var(--shade), .10) 45%,
+        rgba(var(--shade), .55) 72%,
+        rgba(var(--shade), .80) 100%);
+  }
+
+  .brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: .02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand small {
+    display: block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 2px;
+    opacity: .85;
+  }
+
+  .content {
+    margin-top: auto;
+    width: 100%;
+    max-width: 440px;
+    text-align: center;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 300;
+    font-size: clamp(28px, 6.5vw, 42px);
+    line-height: 1.15;
+    letter-spacing: .005em;
+    text-shadow: 0 1px 18px rgba(var(--shade), .35);
+  }
+  .sub {
+    margin: 10px auto 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 32ch;
+    opacity: .9;
+  }
+
+  /* ---------- waitlist form ---------- */
+  .form { text-align: left; width: 100%; max-width: 320px; margin: 28px auto 0; }
+  .form .btn { display: block; margin: 22px auto 0; }
+  .field { position: relative; }
+  .form input[type=email] {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(253, 246, 236, .85);
+    border-radius: 0;
+    color: var(--ink);
+    font: 400 17px/1.4 "Fraunces", Georgia, serif;
+    padding: 12px 2px 10px;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form input[type=email]::placeholder { color: rgba(253, 246, 236, .7); }
+  .form input[type=email]:focus { border-bottom-color: var(--gold); }
+  .form input[type=email]:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    transition: background-color 9999s;
+  }
+
+  .consent {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin: 16px 0 18px;
+    font-size: 13px; line-height: 1.45;
+    color: rgba(253, 246, 236, .9);
+    cursor: pointer;
+  }
+  .consent input {
+    flex: none;
+    appearance: none; -webkit-appearance: none;
+    width: 16px; height: 16px; margin-top: 1px;
+    border: 1px solid rgba(253, 246, 236, .85);
+    background: transparent;
+    display: grid; place-content: center;
+    cursor: pointer;
+  }
+  .consent input::after {
+    content: ""; width: 8px; height: 8px;
+    background: var(--gold); transform: scale(0); transition: transform .12s;
+  }
+  .consent input:checked::after { transform: scale(1); }
+  .consent input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .btn {
+    width: auto;
+    padding: 15px 34px;
+    border: 0; border-radius: 0;
+    background: var(--ink);
+    color: #3A2415;
+    font: 400 17px/1 "Fraunces", Georgia, serif;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background-color .2s, color .2s;
+  }
+  .btn:hover { background: var(--gold); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .btn[disabled] { opacity: .7; cursor: default; }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .msg { min-height: 1.4em; margin-top: 12px; font-size: 14px; text-align: center; }
+  .msg.err { color: #FFB4A8; }
+
+  .thanks { display: none; text-align: center; margin-top: 24px; }
+  .thanks p:first-child { font-family: "Fraunces", Georgia, serif; font-size: 22px; font-weight: 300; }
+  .thanks p + p { margin-top: 6px; font-size: 14px; opacity: .85; }
+  .done .form { display: none; }
+  .done .thanks { display: block; }
+
+  footer {
+    margin-top: 28px;
+    width: 100%;
+    font-size: 13px;
+    opacity: .85;
+    text-align: center;
+  }
+  footer a { color: var(--ink); text-underline-offset: 3px; }
+  footer span { margin: 0 8px; opacity: .6; }
+
+  /* "centred" variant: on phones the headline + form sit in the middle of the screen */
+  @media (max-width: 899px) {
+    .is-centred .content { margin: auto 0; transform: translateY(var(--shift)); }
+    .is-centred footer { margin-top: 0; }
+    .is-centred.hero::after {
+      background:
+        radial-gradient(120% 45% at 50% var(--glow-y), rgba(var(--shade), .55), rgba(var(--shade), 0) 70%),
+        linear-gradient(to bottom, rgba(var(--shade), .45) 0%, rgba(var(--shade), .08) 22%, rgba(var(--shade), .15) 50%, rgba(var(--shade), .6) 100%);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero { padding: 36px 40px 32px; }
+    .hero__bg { object-position: var(--focus-wide); }
+    .brand { font-size: 30px; }
+    .content { max-width: 460px; }
+    .sub { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <main class="hero is-centred">
+    <img class="hero__bg" src="photo.jpg" alt="Two friends laughing while dipping candles at a LUM. workshop" fetchpriority="high">
+
+    <a class="brand" href="/" aria-label="LUM. Workshops">LUM.<small>Candle workshops</small></a>
+
+    <section class="content" aria-labelledby="title">
+      <h1 id="title">Workshops coming soon</h1>
+
+      <form class="form" id="waitlist" novalidate>
+        <div class="field">
+          <label for="email" class="hp">Email</label>
+          <input id="email" name="email" type="email" placeholder="E-mail" autocomplete="email" inputmode="email" required>
+        </div>
+        <!-- honeypot: bots fill this, people never see it -->
+        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="btn" type="submit">Notify me</button>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="thanks" role="status" aria-live="polite">
+        <p>Thank you — we'll be in touch soon.</p>
+      </div>
+
+    </section>
+
+    <footer>
+      <a href="https://instagram.com/lum.workshops" target="_blank" rel="noopener">@lum.workshops</a><span>·</span><a href="mailto:lum.workshops.lisboa@gmail.com">Contact</a>
+    </footer>
+  </main>
+
+  <script>
+    /* Paste your Google Apps Script web-app URL here (ends in /exec) */
+    var ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+
+    (function () {
+      var form = document.getElementById("waitlist");
+      var msg = document.getElementById("msg");
+      var btn = form.querySelector(".btn");
+      var hero = document.querySelector(".hero");
+
+      function say(text, isErr) { msg.textContent = text || ""; msg.className = "msg" + (isErr ? " err" : ""); }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (form.website.value) return;                       // bot
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("Please enter a valid email.", true); form.email.focus(); return; }
+        if (ENDPOINT.indexOf("PASTE_") === 0) { say("Form not connected yet — add the Apps Script URL.", true); return; }
+
+        btn.disabled = true; btn.textContent = "Sending…"; say("");
+        var data = new URLSearchParams({ email: email, consent: "yes", page: location.hostname + location.pathname });
+
+        fetch(ENDPOINT, { method: "POST", body: data })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.error || "failed");
+            hero.classList.add("done");
+          })
+          .catch(function () {
+            btn.disabled = false; btn.textContent = "Notify me";
+            say("Something went wrong. Please try again, or email lum.workshops.lisboa@gmail.com", true);
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
