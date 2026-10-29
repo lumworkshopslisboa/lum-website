@@ -3,275 +3,822 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LUM. Workshops — Coming soon</title>
-<meta name="description" content="Candle-making workshops in Lisbon. Leave your email and we'll let you know when the next session opens.">
-<meta name="theme-color" content="#1c1109">
-<meta property="og:title" content="LUM. Workshops — Coming soon">
-<meta property="og:description" content="Candle-making workshops in Lisbon.">
-<meta property="og:image" content="photo.jpg">
+<title>LUM. Workshops — Candle-making workshops in Lisbon</title>
+<meta name="description" content="Hands-on candle-making workshops in Lisbon. Dip, twist and sculpt a taper candle that's entirely yours.">
+<meta name="theme-color" content="#1B0F08">
+<meta property="og:title" content="LUM. Workshops — Candle-making workshops in Lisbon">
+<meta property="og:description" content="Hands-on candle-making workshops in Lisbon.">
+<meta property="og:image" content="images/dipping-together.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="photo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&family=PT+Sans+Caption:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233A2415'/%3E%3Cpath d='M16 5c3 5 6 8 6 13a6 6 0 0 1-12 0c0-5 3-8 6-13z' fill='%23F0C36D'/%3E%3C/svg%3E">
 <style>
-  :root {
-    --ink: #FDF6EC;          /* cream */
+  :root{
+    --bg-0: #1B0F08;
+    --bg-1: #3A2415;
+    --brown-mid: #4A3222;
     --gold: #F0C36D;
-    --shade: 28, 17, 9;      /* dark chocolate, as RGB for overlays */
-    --focus: 55% 38%;      /* where the photo stays anchored when cropped (phone) */
-    --focus-wide: 50% 36%; /* same, on wide screens */
-    --shift: 9svh;       /* centred variant: nudge the text block up (-) or down (+) on phones */
-    --glow-y: 61%;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
-  body {
-    background: rgb(var(--shade));
-    color: var(--ink);
-    font-family: "DM Sans", system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    --gold-dim: #C9A05A;
+    --cream: #FDF6EC;
+    --cream-dim: #E4D3B8;
+    --line: rgba(240,195,109,0.18);
+    --line-strong: rgba(240,195,109,0.32);
   }
 
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100svh;
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg-0);
+    color: var(--cream);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+  }
+
+  h1, h2, h3{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  a{ color: inherit; }
+  img{ max-width: 100%; display: block; }
+  button{ font-family: inherit; }
+
+  :focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .container{
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 40px);
+  }
+
+  .eyebrow{
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 0 0 14px;
+    font-weight: 500;
+  }
+
+  section{ scroll-margin-top: 84px; }
+
+  .section{ padding-block: clamp(64px, 9vw, 112px); }
+  .section-warm{ background: var(--bg-1); }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+
+  .btn-primary{
+    background: var(--gold);
+    color: var(--bg-0);
+  }
+  .btn-primary:hover{ background: #f5d18a; }
+
+  .btn-outline{
+    background: transparent;
+    color: var(--cream);
+    border-color: var(--line-strong);
+  }
+  .btn-outline:hover{ border-color: var(--gold); color: var(--gold); }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27,15,8,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 18px;
+  }
+  .wordmark{
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cream);
+  }
+  .wordmark-logo{ height: 34px; width: auto; display: block; }
+
+  .hero-logo{ width: clamp(260px, 44vw, 440px); margin: 0 0 28px; }
+  .hero-logo svg{ display: block; width: 100%; height: auto; }
+
+  .footer-logo{ height: 26px; width: auto; display: block; }
+
+  .nav-links{
+    display: flex;
+    gap: clamp(16px, 2.4vw, 32px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a{
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--cream-dim);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-links a:hover{ color: var(--gold); }
+
+  .nav-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .nav-toggle .bar{
+    width: 22px;
+    height: 2px;
+    background: var(--cream);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2){ opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 860px){
+    .nav-links{ gap: 14px; }
+    .nav-links a{ font-size: 0.85rem; }
+  }
+
+  @media (max-width: 620px){
+    .nav-links{
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--bg-0);
+      border-bottom: 1px solid var(--line);
+      padding: 12px clamp(20px, 5vw, 40px) 20px;
+      gap: 14px;
+      display: none;
+    }
+    .nav-links.open{ display: flex; }
+    .nav-links a{ font-size: 0.92rem; }
+    .nav-toggle{ display: inline-flex; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-block: clamp(80px, 14vw, 140px) clamp(64px, 10vw, 100px);
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(240,195,109,0.10) 0%, rgba(240,195,109,0) 60%),
+      var(--bg-0);
+  }
+  .hero-inner{ max-width: 720px; }
+  .hero p{
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+    line-height: 1.7;
+    color: var(--cream-dim);
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+  .hero-ctas{ display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* ---------- Section headers ---------- */
+  .section-head{ max-width: 640px; margin-bottom: clamp(36px, 5vw, 56px); }
+  .section-head h2{
+    font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+    color: var(--cream);
+  }
+  .section-head p{
+    color: var(--cream-dim);
+    line-height: 1.65;
+    margin-top: 14px;
+    max-width: 52ch;
+  }
+
+  /* ---------- About / two-column ---------- */
+  .two-col{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  @media (max-width: 800px){
+    .two-col{ grid-template-columns: 1fr; }
+  }
+  .about-copy p{
+    color: var(--cream-dim);
+    line-height: 1.75;
+    margin: 0 0 16px;
+  }
+  .about-copy p:last-child{ margin-bottom: 0; }
+
+  .photo{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    display: block;
+    background: #2A1A0F;
+  }
+  .photo-tall{ aspect-ratio: 4 / 5; max-height: 620px; }
+
+  /* ---------- Process ---------- */
+  .process-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  @media (max-width: 900px){
+    .process-grid{ grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  }
+  @media (max-width: 520px){
+    .process-grid{ grid-template-columns: 1fr; }
+  }
+  .process-step{
+    padding-right: 28px;
+    border-right: 1px solid var(--line);
+  }
+  .process-grid > .process-step:last-child{ border-right: none; }
+  @media (max-width: 900px){
+    .process-step{ border-right: none; padding-right: 0; }
+  }
+  .process-step .num{
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 2.4rem;
+    -webkit-text-stroke: 1px var(--gold-dim);
+    color: transparent;
+    margin-bottom: 18px;
+    display: block;
+  }
+  .process-step h3{
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .process-step p{
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: var(--cream-dim);
+    margin: 0;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .gallery-grid .photo{ aspect-ratio: 3 / 4; }
+  @media (max-width: 860px){
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+
+  /* ---------- About photo roll ---------- */
+  .about-intro{ max-width: 640px; }
+  .roll{ margin-top: clamp(36px, 5vw, 56px); }
+  .roll-track{
+    list-style: none;
+    margin: 0;
+    padding: 0 max(clamp(20px, 5vw, 40px), calc((100vw - 1180px) / 2 + 40px));
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(clamp(20px, 5vw, 40px), calc((100vw - 1180px) / 2 + 40px));
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .roll-track::-webkit-scrollbar{ display: none; }
+  .roll-item{
+    flex: 0 0 auto;
+    width: clamp(240px, 30vw, 360px);
+    scroll-snap-align: start;
+  }
+  .roll-photo{
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    display: block;
+    background: #2A1A0F;
+  }
+  .roll-controls{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .roll-btn{
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  }
+  .roll-btn:hover{ border-color: var(--gold); color: var(--gold); }
+  .roll-btn svg{ width: 18px; height: 18px; }
+
+  /* ---------- Sessions / pricing ---------- */
+  .tier-list{
     display: flex;
     flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .tier{
+    display: flex;
     align-items: center;
-    padding: max(28px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
-    overflow: hidden;
-    isolation: isolate;
+    justify-content: space-between;
+    gap: 20px;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
   }
-  .hero__bg {
-    position: absolute; inset: 0; z-index: -2;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: var(--focus);
+  .tier-name{ font-size: 1.05rem; color: var(--cream); margin-bottom: 4px; }
+  .tier-meta{ font-size: 0.86rem; color: var(--cream-dim); }
+  .tier-price{
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    white-space: nowrap;
   }
-  /* soft darkening so white text stays readable; heavier at the bottom where the form sits */
-  .hero::after {
-    content: ""; position: absolute; inset: 0; z-index: -1;
-    background:
-      linear-gradient(to bottom,
-        rgba(var(--shade), .45) 0%,
-        rgba(var(--shade), .05) 22%,
-        rgba(var(--shade), .10) 45%,
-        rgba(var(--shade), .55) 72%,
-        rgba(var(--shade), .80) 100%);
-  }
-
-  .brand {
-    font-family: "Fraunces", Georgia, serif;
-    font-weight: 400;
-    font-size: 26px;
-    letter-spacing: .02em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .brand small {
-    display: block;
-    font-family: "DM Sans", sans-serif;
-    font-size: 10px;
-    letter-spacing: .32em;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 2px;
-    opacity: .85;
+  .sessions-cta{
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: var(--cream-dim);
+    font-size: 0.94rem;
   }
 
-  .content {
-    margin-top: auto;
-    width: 100%;
-    max-width: 440px;
-    text-align: center;
+  /* ---------- Upcoming dates ---------- */
+  .dates-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
-  h1 {
-    font-family: "Fraunces", Georgia, serif;
-    font-weight: 300;
-    font-size: clamp(28px, 6.5vw, 42px);
-    line-height: 1.15;
-    letter-spacing: .005em;
-    text-shadow: 0 1px 18px rgba(var(--shade), .35);
+  @media (max-width: 640px){ .dates-grid{ grid-template-columns: 1fr; } }
+  .date-card{
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: var(--bg-1);
   }
-  .sub {
-    margin: 10px auto 22px;
-    font-size: 15px;
-    line-height: 1.5;
-    max-width: 32ch;
-    opacity: .9;
-  }
-
-  /* ---------- waitlist form ---------- */
-  .form { text-align: left; width: 100%; max-width: 320px; margin: 28px auto 0; }
-  .form .btn { display: block; margin: 22px auto 0; }
-  .field { position: relative; }
-  .form input[type=email] {
-    width: 100%;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid rgba(253, 246, 236, .85);
-    border-radius: 0;
-    color: var(--ink);
-    font: 400 17px/1.4 "Fraunces", Georgia, serif;
-    padding: 12px 2px 10px;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  .form input[type=email]::placeholder { color: rgba(253, 246, 236, .7); }
-  .form input[type=email]:focus { border-bottom-color: var(--gold); }
-  .form input[type=email]:-webkit-autofill {
-    -webkit-text-fill-color: var(--ink);
-    transition: background-color 9999s;
-  }
-
-  .consent {
-    display: flex; gap: 10px; align-items: flex-start;
-    margin: 16px 0 18px;
-    font-size: 13px; line-height: 1.45;
-    color: rgba(253, 246, 236, .9);
-    cursor: pointer;
-  }
-  .consent input {
+  .date-badge{
     flex: none;
-    appearance: none; -webkit-appearance: none;
-    width: 16px; height: 16px; margin-top: 1px;
-    border: 1px solid rgba(253, 246, 236, .85);
-    background: transparent;
-    display: grid; place-content: center;
-    cursor: pointer;
-  }
-  .consent input::after {
-    content: ""; width: 8px; height: 8px;
-    background: var(--gold); transform: scale(0); transition: transform .12s;
-  }
-  .consent input:checked::after { transform: scale(1); }
-  .consent input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-  .btn {
-    width: auto;
-    padding: 15px 34px;
-    border: 0; border-radius: 0;
-    background: var(--ink);
-    color: #3A2415;
-    font: 400 17px/1 "Fraunces", Georgia, serif;
-    letter-spacing: .04em;
-    cursor: pointer;
-    transition: background-color .2s, color .2s;
-  }
-  .btn:hover { background: var(--gold); }
-  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-  .btn[disabled] { opacity: .7; cursor: default; }
-
-  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-
-  .msg { min-height: 1.4em; margin-top: 12px; font-size: 14px; text-align: center; }
-  .msg.err { color: #FFB4A8; }
-
-  .thanks { display: none; text-align: center; margin-top: 24px; }
-  .thanks p:first-child { font-family: "Fraunces", Georgia, serif; font-size: 22px; font-weight: 300; }
-  .thanks p + p { margin-top: 6px; font-size: 14px; opacity: .85; }
-  .done .form { display: none; }
-  .done .thanks { display: block; }
-
-  footer {
-    margin-top: 28px;
-    width: 100%;
-    font-size: 13px;
-    opacity: .85;
+    width: 68px;
     text-align: center;
+    border-right: 1px solid var(--line);
+    padding-right: 18px;
   }
-  footer a { color: var(--ink); text-underline-offset: 3px; }
-  footer span { margin: 0 8px; opacity: .6; }
-
-  /* "centred" variant: on phones the headline + form sit in the middle of the screen */
-  @media (max-width: 899px) {
-    .is-centred .content { margin: auto 0; transform: translateY(var(--shift)); }
-    .is-centred footer { margin-top: 0; }
-    .is-centred.hero::after {
-      background:
-        radial-gradient(120% 45% at 50% var(--glow-y), rgba(var(--shade), .55), rgba(var(--shade), 0) 70%),
-        linear-gradient(to bottom, rgba(var(--shade), .45) 0%, rgba(var(--shade), .08) 22%, rgba(var(--shade), .15) 50%, rgba(var(--shade), .6) 100%);
-    }
+  .date-badge .day{
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--gold);
+    display: block;
   }
+  .date-badge .mon{
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-top: 6px;
+  }
+  .date-info h3{ font-size: 1.15rem; color: var(--cream); margin-bottom: 6px; }
+  .date-info p{ margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--cream-dim); }
+  .date-logo{
+    margin-left: auto;
+    align-self: center;
+    height: 44px;
+    width: auto;
+    opacity: 0.9;
+  }
+  @media (max-width: 520px){
+    .date-card{ position: relative; padding: 20px; gap: 16px; }
+    .date-badge{ width: 56px; padding-right: 14px; }
+    .date-badge .day{ font-size: 2rem; }
+    .date-logo{ position: absolute; top: 20px; right: 20px; height: 22px; margin: 0; }
+    .date-info p{ font-size: 0.86rem; }
+  }
+  @media (max-width: 480px){
+    .hero-ctas .btn, .sessions-cta .btn, .contact-ctas .btn{ width: 100%; }
+    .photo-tall{ aspect-ratio: 4 / 3; }
+  }
+  .partner{
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .partner-note{
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+  }
+  .partner-note strong{ color: var(--cream); font-weight: 500; }
+  .price-head{
+    font-size: 0.74rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 44px 0 14px;
+  }
+  .price-note{ font-size: 0.82rem; color: var(--cream-dim); opacity: 0.8; margin-top: 14px; line-height: 1.6; }
 
-  @media (min-width: 900px) {
-    .hero { padding: 36px 40px 32px; }
-    .hero__bg { object-position: var(--focus-wide); }
-    .brand { font-size: 30px; }
-    .content { max-width: 460px; }
-    .sub { font-size: 16px; }
+  /* ---------- Contact ---------- */
+  .contact-list dt{
+    font-size: 0.74rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 0;
+  }
+  .contact-list dd{
+    margin: 6px 0 0;
+    font-size: 1.02rem;
+    color: var(--cream);
+  }
+  .contact-list a{ text-decoration: none; }
+  .contact-list a:hover{ color: var(--gold); }
+  .contact-item{
+    padding-block: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-item:first-child{ padding-top: 0; }
+  .contact-ctas{ display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--bg-0);
+    border-top: 1px solid var(--line);
+    padding-block: 32px;
+  }
+  .footer-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-meta{ font-size: 0.82rem; color: var(--cream-dim); opacity: 0.8; text-align: center; }
+  .footer-links{ display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a{ text-decoration: none; font-size: 0.85rem; color: var(--cream-dim); }
+  .footer-links a:hover{ color: var(--gold); }
+
+  @media (max-width: 700px){
+    .footer-inner{ flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 <body>
-  <main class="hero is-centred">
-    <img class="hero__bg" src="photo.jpg" alt="Two friends laughing while dipping candles at a LUM. workshop" fetchpriority="high">
 
-    <a class="brand" href="/" aria-label="LUM. Workshops">LUM.<small>Candle workshops</small></a>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="wordmark" aria-label="LUM. Workshops home"><img src="flame-only.svg" alt="" class="wordmark-logo"></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#sessions">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <section class="content" aria-labelledby="title">
-      <h1 id="title">Workshops coming soon</h1>
+<header class="hero" id="top">
+  <div class="container hero-inner">
+    <h1 class="hero-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="71 45 520 295" role="img" aria-label="LUM. Candle Workshops">
+        <defs>
+          <style>
+            .cls-1 { font-family: PTSans-Caption, 'PT Sans Caption'; font-size: 25.9px; }
+            .cls-1, .cls-2 { fill: #ffcf71; }
+            .cls-3 { letter-spacing: .17em; }
+            .cls-5 { letter-spacing: .18em; }
+            .cls-6 { letter-spacing: .18em; }
+            .cls-7 { letter-spacing: .2em; }
+          </style>
+        </defs>
+        <path class="cls-2" d="M85.32,264.43c-1.2-1.55,1.37-21.35,1.39-23.34,.13-14.67,1.76-29.27,3.38-43.84,.52-4.72,1.05-9.46,2.35-14.01,1.27-4.49,3.51-9,7.44-11.3,1.74-1.02,3.72-1.55,5.71-1.7,8.03-.63,15.65,4.79,19.88,11.88,4.23,7.08,5.61,15.57,6.27,23.87,1.52,19.14-.37,38.47-4.42,57.21-.71,3.27-1.55,6.68-3.71,9.18-2.16,2.51-6.04,3.75-8.72,1.86-2.89-2.03-3.01-6.32-2.7-9.92,1.06-12.41,3.6-24.65,4.61-37.07,1.01-12.42,.4-25.31-4.56-36.67-.63-1.45-1.39-2.94-2.69-3.8-1.3-.85-3.28-.79-4.14,.53-.4,.62-.5,1.4-.58,2.14-1.39,13.1,1.11,25.62-3.94,37.79-6.35,15.31-1.38,31.67-4,44-1.37,6.45-9.84,.33-11.57-6.81"/>
+        <path class="cls-2" d="M129.85,151.45c3.54-8.75,3.72-18.29,3.51-27.61-.13-5.98-3.78-16.72-2.47-22.6,2-9,6-19-1.8-33.48-2.83-5.25-8.2-10.07-14.49-10.07-1.04,0-.08,.39-1.04,0-4.65-1.92-7.86,9.04-12.7,18.58-1.49,2.94-11.72,18.5-13.19,21.41-4.08,8.06-5.18,17-6.22,26.28-.99,8.81,.68,17.7,1.66,26.52,.32,2.84-1.25,5.89,1.46,7.2q2.07,1,3.11,1c2.31,0,2.35-2.99,2.55-5.12,.8-8.53,.69-17.14-.35-25.65-.32-2.67-.24-5,0-7.68,1-11,13.23-33.58,20.69-40.79,1.72-1.66,3.92-3.29,6.44-3.15,2.53,.14,4.47,1.98,6.14,3.7,3.39,3.48,1.35,6.72-1.27,15.24-2.32,7.55,1,15.46,1.99,20.97,1.84,10.29,.9,21-1.78,31.16-.69,2.62-1.69,5.36-.93,7.96,.69,2.36,.69,1.36,1.52,2.31,2.49,2.86,6-3.32,7.16-6.19Z"/>
+        <path class="cls-2" d="M117.31,148.85c1.26-4.25,1.33-8.87,1.27-13.39-.04-2.9-.14-5.82-.71-8.63-.56-2.75-2.26-10.78-3.6-13.13-4-7-1.07-10.51-3-12-1.93-1.49-3-1-5,0-1.8,.9-5.18,13.31-6.2,15.31-.67,1.32-1.31,2.67-1.84,4.08-1.46,3.91-2.05,8.24-2.17,12.53-.12,4.29,.23,8.58,.57,12.86,.11,1.38,.24,2.83,.91,3.94s2.06,1.7,2.95,.84c.67-.64,.81-1.78,.88-2.82,.29-4.14,.26-8.31-.11-12.44-.11-1.3-.26-2.59-.29-3.89-.12-4.78,1.36-9.59,4.01-13.09,.61-.81,1.39-1.6,2.29-1.53,.9,.07,1.59,.96,2.18,1.79,1.2,1.69,2.43,3.42,3.1,5.5,.56,1.75,.71,3.66,.81,5.53,.28,5.05,.31,10.18-.66,15.11-.25,1.27-.56,2.58-.34,3.86,.21,1.2,1.32,2.6,2.38,2.57,1.38-.04,2.14-1.61,2.55-3.01Z"/>
+        <path class="cls-2" d="M171.13,137.93c-.8,2.12-1.01,4.57-.04,6.62,1.42,3,4.95,4.38,8.25,4.8,2.74,.35,5.54,.22,8.24-.38,3.53-.78-5.24-2.19-2.66,.34,1.34,1.31,1.72,3.31,1.82,5.18,.27,4.99-.95,9.93-2.25,14.75-6.26,23.31-14.62,47.26-10.29,71.01,1,5.5,2.71,10.93,5.67,15.66,4.68,7.48,12.34,12.84,20.72,15.58,8.38,2.75,17.44,3.01,26.16,1.7,4.77-.71,9.51-1.9,13.82-4.05,11.02-5.5,18.24-17.08,20.4-29.21,2.15-12.13-.28-24.71-4.81-36.16-1.01-2.54-2.21-5.16-4.4-6.79-4.56-3.38-11.63-.7-14.48,4.21-2.84,4.91-2.42,11.06-1.02,16.56,1.4,5.5,3.68,10.81,4.31,16.45,.2,1.73,.23,3.5-.14,5.21-1.59,7.22-9.74,10.9-17.07,11.85-5.39,.7-10.98,.52-16.08-1.37s-9.64-5.62-11.77-10.62c-2.28-5.37-1.58-11.59,.26-17.13,1.85-5.54,4.77-10.65,6.98-16.06,4.76-11.63,6.15-24.36,6.42-36.92,.16-7.14-.06-14.42-2.42-21.15-2.77-7.88-7.98-17.49-15.86-18.62-8.08-1.16-8.12-.87-9.72-.95-4.68-.24-8.37,4.97-10.05,9.47Z"/>
+        <path class="cls-2" d="M281.95,139.95c-5.44,15.17-5.63,31.67-5.23,47.78,.26,10.34,.75,20.75,3.31,30.77,2.51,9.8,6.96,19.02,12.26,27.64,5.24,8.51,11.54,16.66,20.04,21.93,8.49,5.26,19.54,7.22,28.61,3.03,7.65-3.53,12.86-10.76,17.3-17.93,2.92-4.71,5.67-9.54,7.95-14.6,6.28-13.98,8.78-29.42,9.19-44.74,.41-15.32-1.21-30.61-2.82-45.85-.52-4.91-1.14-10.08-4.08-14.04-2.94-3.96-9.06-6.02-12.93-2.96-2.9,2.29-3.5,6.38-3.79,10.06-1.18,14.77-.93,29.65,.76,44.36,.53,4.62,1.2,9.23,1.37,13.88,.64,17.04-5.71,34.25-17.27,46.78-2.67,2.9-6.07,5.73-10,5.51-3.94-.22-6.98-3.39-9.6-6.34-5.3-5.99-10.71-12.14-13.69-19.56-2.51-6.23-3.18-13.02-3.67-19.72-1.33-18.01-1.58-36.32,2.51-53.91,1.06-4.54,2.41-9.23,1.38-13.77-.97-4.27-5.84-9.24-10.48-9.12-6.03,.17-9.32,5.8-11.11,10.78Z"/>
+        <path class="cls-2" d="M421.06,166.98c-5.76,28.02-1.05,56.99,3.04,85.3,.76,5.25,1.45,10.87-.84,15.66-2.29,4.79-8.81,7.91-13.1,4.79-2.25-1.64-3.28-4.44-4.13-7.09-9.35-29.06-12.48-60.11-9.12-90.45,.94-8.5,2.43-17.09,6.19-24.77,3.76-7.69,10.05-14.46,18.17-17.15,6.88-2.28,14.68-1.42,21.02,2.1,6.34,3.51,11.16,9.58,13.41,16.46,2.28,6.97,1.98,14.48,1.86,21.82-.25,15.72,.44,31.46,2.08,47.1,.56,5.36,1.26,10.81,3.48,15.72,.38,.85,.83,1.71,1.55,2.31,2.05,1.71,5.43,.45,6.85-1.82,1.42-2.27,1.45-5.11,1.48-7.78,.19-19.76,2.45-39.44,4.7-59.08,.73-6.35,1.47-12.75,3.27-18.88,1.77-6.04,4.89-12.13,10.37-15.23,2.42-1.37,5.18-2.08,7.95-2.3,11.18-.85,21.81,6.46,27.7,16,5.89,9.55,7.82,20.99,8.74,32.17,2.12,25.79-.51,51.84-6.15,77.09-.99,4.41-2.16,9-5.17,12.37-3.01,3.38-8.42,5.05-12.16,2.51-4.03-2.74-4.2-8.52-3.77-13.37,1.48-16.72,5.02-33.22,6.42-49.95,1.41-16.73,.55-34.11-6.35-49.42-.88-1.96-1.94-3.96-3.75-5.11-1.81-1.15-4.57-1.07-5.77,.71-.56,.84-.69,1.88-.8,2.89-1.94,17.66-2.68,35.44-2.21,53.2,.35,13.39,.97,28.16-7.46,38.57-5.62,6.94-14.9,10.71-23.77,9.72-8.87-.98-17.08-6.66-21.19-14.59-3.65-7.03-4.1-15.22-4.48-23.12-.68-14.04-1.36-28.09-2.03-42.13-.4-8.3-.82-17.14-4.76-24.66-4.27-8.16-10.43,6.48-11.24,10.4Z"/>
+        <path class="cls-2" d="M566.82,239.22c-1.79,0-2.59,0-5.02,1.33-1.77,.97-3.31,2.34-4.56,3.93-.83,1.05-1.55,2.2-2.01,3.46-.52,1.44-.69,3-.47,4.52,.35,2.47,1.69,4.73,3.42,6.54,1.71,1.79,3.84,3.21,6.21,3.91,2.37,.71,4.99,.67,7.28-.27,1-.41,1.93-.99,2.77-1.68,2.53-2.09,4.15-5.26,4.36-8.54,.21-3.28-.99-6.63-3.24-9.03,0,0-4.42-4.17-8.73-4.17Z"/>
+        <text class="cls-1" transform="translate(142.05 323.15)"><tspan class="cls-3" x="0" y="0">C</tspan><tspan class="cls-7" x="20.62" y="0">ANDLE</tspan><tspan class="cls-6" x="130.61" y="0"> </tspan><tspan class="cls-5" x="142.83" y="0">W</tspan><tspan class="cls-7" x="171.15" y="0">ORKSHOPS</tspan></text>
+      </svg>
+    </h1>
+    <p>A slow, hands-on workshop for making candles by hand — dipping, twisting and sculpting a taper candle that's entirely yours. In Lisbon.</p>
+    <div class="hero-ctas">
+      <a href="#sessions" class="btn btn-primary">See dates &amp; book</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+</header>
 
-      <form class="form" id="waitlist" novalidate>
-        <div class="field">
-          <label for="email" class="hp">Email</label>
-          <input id="email" name="email" type="email" placeholder="E-mail" autocomplete="email" inputmode="email" required>
-        </div>
-        <!-- honeypot: bots fill this, people never see it -->
-        <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-        <button class="btn" type="submit">Notify me</button>
-        <p class="msg" id="msg" role="status" aria-live="polite"></p>
-      </form>
+<section class="section section-warm" id="about">
+  <div class="container">
+    <div class="about-copy about-intro">
+      <p class="eyebrow">About LUM.</p>
+      <h2 style="margin-bottom:20px;">A workshop built on slow making.</h2>
+      <p>LUM. Workshops is a candle-making workshop based in Lisbon. Every session is small and hands-on — you'll leave with wax-stained hands and a candle you made yourself, from the first dip to the last little detail.</p>
+      <p>We're just getting started, and this page will grow along with us. Follow along on Instagram for new dates and photos from each session.</p>
+    </div>
+  </div>
+  <div class="roll" aria-label="Photos from our workshops">
+    <ul class="roll-track" id="rollTrack" tabindex="0">
+        <li class="roll-item"><img src="images/dipping-together.jpg" alt="Guests dipping candles in red wax" class="roll-photo" loading="lazy" style="object-position:50% 45%"></li>
+        <li class="roll-item"><img src="images/dip-red.jpg" alt="Lifting a red taper out of the wax pot" class="roll-photo" loading="lazy" style="object-position:50% 45%"></li>
+        <li class="roll-item"><img src="images/carving-tree.jpg" alt="Shaping the leaves of a green tree candle" class="roll-photo" loading="lazy" style="object-position:40% 50%"></li>
+        <li class="roll-item"><img src="images/colour-row.jpg" alt="Colourful tapers hanging to set" class="roll-photo" loading="lazy" style="object-position:50% 50%"></li>
+        <li class="roll-item"><img src="images/hanging-to-dry.jpg" alt="Hanging candles up to dry" class="roll-photo" loading="lazy" style="object-position:50% 30%"></li>
+        <li class="roll-item"><img src="images/work-table.jpg" alt="The work table mid-session" class="roll-photo" loading="lazy" style="object-position:50% 60%"></li>
+    </ul>
+    <div class="container roll-controls">
+      <button class="roll-btn" data-dir="-1" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="roll-btn" data-dir="1" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
 
-      <div class="thanks" role="status" aria-live="polite">
-        <p>Thank you — we'll be in touch soon.</p>
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The Process</p>
+      <h2>How a session unfolds.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="num">01</span>
+        <h3>Dip</h3>
+        <p>Dip the wick into pots of coloured wax, layer by layer, until your candle takes shape. No experience needed.</p>
       </div>
+      <div class="process-step">
+        <span class="num">02</span>
+        <h3>Shape</h3>
+        <p>While the wax is still warm, twist it, braid it or sculpt it into something new.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">03</span>
+        <h3>Decorate</h3>
+        <p>Add wax petals, stripes, bows and little details — every candle comes out different.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">04</span>
+        <h3>Wrap &amp; Take Home</h3>
+        <p>Hang it to set, then we weigh it, wrap it in paper, and it's ready to go home with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    </section>
+<section class="section section-warm" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Gallery</p>
+      <h2>Made at LUM.</h2>
+      <p>Twisted, striped, petalled, dipped in every colour — a few of the candles made at our last workshop.</p>
+    </div>
+    <div class="gallery-grid">
+      <img src="images/petal-candle.jpg" alt="A white candle sculpted with layered petals" class="photo" loading="lazy" style="object-position:50% 40%">
+      <img src="images/coral-taper.jpg" alt="A coral taper with sculpted spikes" class="photo" loading="lazy" style="object-position:50% 50%">
+      <img src="images/green-trees.jpg" alt="Two green tree candles" class="photo" loading="lazy" style="object-position:50% 50%">
+      <img src="images/finished-lineup.jpg" alt="Finished candles lined up under fairy lights" class="photo" loading="lazy" style="object-position:50% 60%">
+    </div>
+  </div>
+</section>
 
-    <footer>
-      <a href="https://instagram.com/lum.workshops" target="_blank" rel="noopener">@lum.workshops</a><span>·</span><a href="mailto:lum.workshops.lisboa@gmail.com">Contact</a>
-    </footer>
-  </main>
+<section class="section" id="sessions">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Next workshop</p>
+      <h2>Bookings are open.</h2>
+      <p>Two days of candle-making at Kube Coworking in Alvalade. Three 90-minute sessions each day, with room for up to 12 people per session.</p>
+    </div>
 
-  <script>
-    /* Paste your Google Apps Script web-app URL here (ends in /exec) */
-    var ENDPOINT = "https://script.google.com/macros/s/AKfycbwcF84fztC0MbQL99RL6tgSjnridIjgqhq9jN7J_ufFn8MEjA05WUrsd8PL9d2QR-2r/exec";
+    <div class="dates-grid">
+      <div class="date-card">
+        <div class="date-badge"><span class="day">14</span><span class="mon">Nov</span></div>
+        <div class="date-info">
+          <h3>Saturday</h3>
+          <p>3 sessions &middot; 90 min<br>Kube Coworking, Alvalade</p>
+        </div>
+        <img src="images/kube-logo.png" alt="Kube Coworking" class="date-logo" width="400" height="159">
+      </div>
+      <div class="date-card">
+        <div class="date-badge"><span class="day">15</span><span class="mon">Nov</span></div>
+        <div class="date-info">
+          <h3>Sunday</h3>
+          <p>3 sessions &middot; 90 min<br>Kube Coworking, Alvalade</p>
+        </div>
+        <img src="images/kube-logo.png" alt="Kube Coworking" class="date-logo" width="400" height="159">
+      </div>
+    </div>
+    <div class="partner">
+      <p class="partner-note">Hosted with the support of <strong>Kube Coworking</strong>.</p>
+    </div>
 
-    (function () {
-      var form = document.getElementById("waitlist");
-      var msg = document.getElementById("msg");
-      var btn = form.querySelector(".btn");
-      var hero = document.querySelector(".hero");
+    <p class="price-head">Price</p>
+    <div class="tier-list">
+      <div class="tier">
+        <div>
+          <div class="tier-name">Booking &middot; includes your first 50 g of candle</div>
+          <div class="tier-meta">Per person &middot; paid within 48h of booking to confirm your spot</div>
+        </div>
+        <div class="tier-price">€5</div>
+      </div>
+      <div class="tier">
+        <div>
+          <div class="tier-name">Anything over 50 g</div>
+          <div class="tier-meta">Paid on the day, by weight &middot; a typical 100–150 g candle adds €2.50–€5</div>
+        </div>
+        <div class="tier-price">€5 / 100 g</div>
+      </div>
+    </div>
+    <p class="price-note">All materials included. Book for up to 4 people at once. Full refund up to 48h before your session; under-10s join with an adult.</p>
 
-      function say(text, isErr) { msg.textContent = text || ""; msg.className = "msg" + (isErr ? " err" : ""); }
+    <div class="sessions-cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScRxHOvhNn4qtVAgINTbKEemG3pFoTUs7mZdasuQdlmaTk4hg/viewform" class="btn btn-primary" target="_blank" rel="noopener">Book your spot</a>
+      <span>Registration takes a couple of minutes — pick your session in the form.</span>
+    </div>
+  </div>
+</section>
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var email = form.email.value.trim();
-        if (form.website.value) return;                       // bot
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("Please enter a valid email.", true); form.email.focus(); return; }
-        if (ENDPOINT.indexOf("PASTE_") === 0) { say("Form not connected yet — add the Apps Script URL.", true); return; }
+<section class="section section-warm" id="contact">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 style="margin-bottom:24px;">Get in touch.</h2>
+        <dl class="contact-list">
+          <div class="contact-item">
+            <dt>Location</dt>
+            <dd>Lisbon, Portugal — next workshop at Kube Coworking, Alvalade</dd>
+          </div>
+          <div class="contact-item">
+            <dt>Email</dt>
+            <dd><a href="mailto:lum.workshops.lisboa@gmail.com">lum.workshops.lisboa@gmail.com</a></dd>
+          </div>
+          <div class="contact-item" style="border-bottom:none;">
+            <dt>Instagram</dt>
+            <dd><a href="https://www.instagram.com/lum.workshops" target="_blank" rel="noopener">@lum.workshops</a></dd>
+          </div>
+        </dl>
+        <div class="contact-ctas">
+          <a href="mailto:lum.workshops.lisboa@gmail.com" class="btn btn-primary">Email Us</a>
+          <a href="https://www.instagram.com/lum.workshops" target="_blank" rel="noopener" class="btn btn-outline">Follow on Instagram</a>
+        </div>
+      </div>
+      <img src="images/red-twist.jpg" alt="A twisted red candle with a white wax bow" class="photo photo-tall" loading="lazy" style="object-position:50% 68%">
+    </div>
+  </div>
+</section>
 
-        btn.disabled = true; btn.textContent = "Sending…"; say("");
-        var data = new URLSearchParams({ email: email, consent: "yes", page: location.hostname + location.pathname });
+<footer>
+  <div class="container footer-inner">
+    <a href="#top" aria-label="LUM. Workshops home"><img src="flame-only.svg" alt="" class="footer-logo"></a>
+    <p class="footer-meta">&copy; 2026 LUM. Workshops &middot; Lisbon, Portugal</p>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#sessions">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
 
-        fetch(ENDPOINT, { method: "POST", body: data })
-          .then(function (r) { return r.json(); })
-          .then(function (res) {
-            if (!res.ok) throw new Error(res.error || "failed");
-            hero.classList.add("done");
-          })
-          .catch(function () {
-            btn.disabled = false; btn.textContent = "Notify me";
-            say("Something went wrong. Please try again, or email lum.workshops.lisboa@gmail.com", true);
-          });
+<script>
+  (function(){
+    var track = document.getElementById('rollTrack');
+    if(!track) return;
+    var originals = Array.prototype.slice.call(track.children);
+    var n = originals.length;
+    if(!n) return;
+
+    // Copies before and after the real photos so the roll never runs out
+    function cloneSet(){
+      return originals.map(function(li){
+        var c = li.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        c.querySelectorAll('img').forEach(function(im){ im.alt = ''; im.loading = 'eager'; });
+        return c;
       });
-    })();
-  </script>
+    }
+    var before = cloneSet(), after = cloneSet();
+    before.forEach(function(c){ track.insertBefore(c, originals[0]); });
+    after.forEach(function(c){ track.appendChild(c); });
+
+    var items = track.children;
+    function setWidth(){ return items[n].offsetLeft - items[0].offsetLeft; }
+    function step(){ return items[1].offsetLeft - items[0].offsetLeft; }
+
+    function jump(to){
+      track.style.scrollSnapType = 'none';
+      track.scrollLeft = to;
+      track.offsetWidth; // apply before snapping back on
+      track.style.scrollSnapType = '';
+    }
+    function recentre(){
+      var w = setWidth(), x = track.scrollLeft;
+      if(x < w * 0.5) jump(x + w);
+      else if(x >= w * 1.5) jump(x - w);
+    }
+    function start(){ jump(items[n].offsetLeft - items[0].offsetLeft); }
+
+    var t;
+    track.addEventListener('scroll', function(){
+      clearTimeout(t);
+      t = setTimeout(recentre, 120);
+    }, { passive: true });
+    if('onscrollend' in window) track.addEventListener('scrollend', recentre);
+
+    document.querySelectorAll('.roll-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        recentre();
+        track.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('resize', function(){
+      var w = setWidth(), x = track.scrollLeft;
+      var idx = Math.round(x / step()) % n;
+      jump(w + idx * step());
+    });
+    if(document.readyState === 'complete') start();
+    else window.addEventListener('load', start);
+    start();
+  })();
+</script>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if(!toggle || !links) return;
+    toggle.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
 </body>
 </html>
-
-
