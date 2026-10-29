@@ -269,12 +269,13 @@
     .process-grid{ grid-template-columns: 1fr; }
   }
   .process-step{
-    padding-right: 28px;
+    padding-inline: 36px;
     border-right: 1px solid var(--line);
   }
-  .process-grid > .process-step:last-child{ border-right: none; }
+  .process-grid > .process-step:first-child{ padding-left: 0; }
+  .process-grid > .process-step:last-child{ border-right: none; padding-right: 0; }
   @media (max-width: 900px){
-    .process-step{ border-right: none; padding-right: 0; }
+    .process-step, .process-grid > .process-step:first-child{ border-right: none; padding-inline: 0; }
   }
   .process-step .num{
     font-family: 'Fraunces', Georgia, serif;
