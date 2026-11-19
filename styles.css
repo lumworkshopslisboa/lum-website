@@ -540,3 +540,46 @@ footer{
   .date-card-past .date-badge .day{ font-size: 1.4rem; }
   .date-card-past .date-info h3{ padding-right: 64px; }
 }
+
+/* ---------- Reviews ---------- */
+.stars{ color: var(--gold); letter-spacing: 0.12em; font-size: 0.95rem; line-height: 1; }
+.rating-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+.rating-badge:hover{ border-color: var(--gold); }
+.rating-score{ font-family: 'Fraunces', Georgia, serif; font-size: 1.15rem; color: var(--cream); }
+.rating-count{ font-size: 0.86rem; color: var(--cream-dim); }
+.rating-badge:hover .rating-count{ color: var(--gold); }
+.reviews-grid{ columns: 3 280px; column-gap: 16px; }
+.review-card{
+  break-inside: avoid;
+  margin: 0 0 16px;
+  padding: 26px 26px 22px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg-1);
+}
+.review-card blockquote{ margin: 14px 0 18px; }
+.review-card blockquote p{
+  margin: 0;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--cream);
+}
+.review-card figcaption{
+  font-size: 0.74rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+.reviews-cta{ margin-top: 20px; }
+@media (max-width: 480px){ .reviews-cta .btn{ width: 100%; } }
