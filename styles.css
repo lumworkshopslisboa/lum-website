@@ -107,6 +107,7 @@ section{ scroll-margin-top: 84px; }
   padding-block: 18px;
 }
 .wordmark{
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -164,7 +165,7 @@ section{ scroll-margin-top: 84px; }
   .nav-links a{ font-size: 0.85rem; }
 }
 
-@media (max-width: 620px){
+@media (max-width: 680px){
   .nav-links{
     position: absolute;
     top: 100%;
@@ -523,7 +524,7 @@ footer{
 .lang-switch a:hover{ color: var(--gold); }
 .lang-switch [aria-current]{ color: var(--gold); }
 .lang-switch .sep{ color: var(--line-strong); padding: 0; }
-@media (max-width: 620px){
+@media (max-width: 680px){
   .nav-right{ gap: 12px; }
   .lang-switch{ border-left: none; padding-left: 0; }
 }
